@@ -1,0 +1,98 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block main-content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="success" data-bs-dismiss="success">
+  <p class= 'text-center'><strong>Hi {{user.username}}!</strong> Welcome to Eshopping.</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %} 
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-2 border-end">
+      <ul class="list-unstyled">
+        <div id="list-example" class="list-group text-center">
+        <div class="d-grid gap-2 col-6 mx-auto">
+        <li class="list-group-item list-group-item-action"><a class="btn {{active}}" href="{% url 'profile' %}">Profile</a></li>
+        <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'orders' %}">Orders</a></li>
+        <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'editprofile' %}">Edit Profile</a></li>
+        <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'changepassword' %}">Change Password</a></li>
+        </div>
+        </div>
+      </ul>
+    </div>
+    <div class="col-sm-8">
+      <h3>Welcome {{user.first_name}}!</h3><hr>
+        {% comment %} #body {% endcomment %}
+        <div class="container my-5">
+          <div class="row">
+  
+            <div class="col-sm-3 mytable">
+            <table class="table"><tr>
+            <th scope="row"></th>
+            <td class='text-center'> <strong>Total Orders</strong></td></tr>
+            <tr>
+            <th scope="row"></th>
+            <td class='text-center'>{{totalorders}}</td>
+           </tr>
+           </table>
+           </div>
+            
+            <div class="col-sm-4 offset-sm-1 mytable"><table class="table"><tr>
+            <th scope="row"></th>
+            <td class='text-center'> <strong>Orders Delivered</strong></td></tr>
+            <tr>
+            <th scope="row"></th>
+            <td class='text-center'>{{td}}</td>
+           </tr>
+           </table></div>
+            <div class="col-sm-3 offset-sm-1 mytable"><table class="table"><tr>
+            <th scope="row"></th>
+            <td class='text-center'> <strong>Orders Pending</strong></td></tr>
+            <tr>
+            <th scope="row"></th>
+            <td class='text-center'>{{pd}}</td>
+           </tr>
+           </table>
+           </div></div><br><br>
+          
+          <h3 class:'mt-5 '>Your recent orders detail:</h3>  <hr><br>
+          <div>
+                <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sn</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Date Ordered</th>
+                    <th scope="col">Status</th>
+                    {% comment %} <th scope="col">Remarks</th> {% endcomment %}
+                  </tr>
+                </thead>
+                <tbody>
+                {% for op in order_placed %}
+                  <tr>
+                    <td scope="row">{{forloop.counter}}</td>
+                    <td scope="row">{{op.product.title}}</td>
+                    <td>{{op.ordered_date}}</td>
+                    <td>{{op.status}}</td>
+                    {% comment %} <td>@mdo</td> {% endcomment %}
+                  </tr>
+                 {% endfor %} 
+                  
+                </tbody>
+              </table>
+                        </div>
+            
+            </div>
+      
+        </div>
+      
+    </div>
+  </div>  
+</div>  
+
+{% endblock main-content %}

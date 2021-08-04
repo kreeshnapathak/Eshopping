@@ -1,0 +1,46 @@
+.owl-carousel .item{
+ /* border: 1px solid black; */
+ font-size: 24px;
+ text-align: center;
+ margin-top: 20px;;
+}
+
+.owl-next{
+ float:right;
+}
+.owl-prev{
+ float:left;
+}
+.owl-prev span{
+ font-size: 24px;
+ font-weight: bold;
+}
+.owl-next span{
+ font-size: 24px;
+ font-weight: bold;
+ 
+}
+/* for footer at bottom begins */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin:0;
+   }
+  
+   .content {
+    padding: 0px; 
+    }
+   .footer {
+    margin-top: auto;
+    padding:0.05px; 
+    width:100%;
+   }
+
+/* for footer at bottom ends */
+
+.mytable {
+    background-color: rgb(133, 133, 211);
+    font-style: oblique;
+}
+

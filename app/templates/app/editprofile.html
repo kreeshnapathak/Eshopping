@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Edit Profile{% endblock title %}
+{% block main-content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="success" data-bs-dismiss="success">
+  <p class= 'text-center'><strong>Hi {{user.first_name}}!</strong> Your Profile has been updated.</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %} 
+
+<div class="container my-5">
+ <div class="row">
+  
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+   <div id="list-example" class="list-group">
+   <div class="d-grid gap-2 col-6 mx-auto">
+   <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'profile' %}">Profile</a></li>
+  <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'orders' %}">Orders</a></li>
+  <li class="list-group-item list-group-item-action"><a class="btn {{active}}" href="{% url 'editprofile' %}">Edit Profile</a></li>
+  <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'changepassword' %}">Change Password</a></li
+</div>
+</div>
+</ul>
+</div>
+  <div class="col-sm-8 ">
+  <h3 class=>Update Profile</h3><hr><br>
+   <form action="" class='offset-sm-1' method="post">
+    {% csrf_token %}
+    {% for fm in uform %}
+    <div class='form-group'>
+    {{fm.label_tag}}{{fm}}{{fm.errors|striptags}}<br>
+    </div>
+    {% endfor %}
+    {% comment %} {{uform}}
+    {{cform}} {% endcomment %}
+    {% for fm in cform %}
+    <div class='form-group'>
+    {{fm.label_tag}}{{fm}}{{fm.errors|striptags}}<br>
+    </div>
+    {% endfor %}
+    <div class="text-end text-center my-3">
+     <input type="submit" value=Submit class="btn btn-primary">
+    </div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

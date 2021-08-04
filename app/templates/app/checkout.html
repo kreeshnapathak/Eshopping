@@ -1,0 +1,63 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row mt-5">
+  <div class="col-sm-6">
+    <h4>Order Summary</h4>
+    <hr>
+    {% for cart in cartitems %}
+      <div class="card mb-2">
+        <div class="card-body">
+        <div class = 'container'>
+        <div class="row">
+        <div class="col-sm-8"> <h5>Product: {{cart.product.title}}</h5>
+          <p>Quantity: {{cart.quantity}}</p>
+          <p class="fw-bold">Price: {{cart.total_cost}}</p></div>
+        {% comment %} <div class = 'col-sm-4'>
+      </div> {% endcomment %}
+      <div class = 'col-sm-4'>
+      <div class="col text-center align-self-center"><img src={{cart.product.product_image.url}} alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
+      </div>
+      </div>
+        </div>
+        
+      </div>
+      
+      </div>
+      {% endfor %}
+      <span><strong>  Total Price</strong>(including shipping)<strong> = Rs. {{totalamount}}</strong></span>
+      <hr>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1">
+    <h4>Your Shipping Address</h4>
+    <hr>
+    <form action="">
+      <div class="card">
+        <div class="card-body">
+        <h5>{{user.first_name}} {{user.last_name}}</h5>
+        {% for detail in details %}
+        <p>City: {{detail.city}}</p>
+        <p>State: {{detail.state}}</p>
+        <p>Zip code: {{detail.zipcode}}</p>
+        <p>Locality: {{detail.locality}}</p>
+        {% endfor %}
+        </div>
+      </div>
+        <div class="text-end">
+                    {% comment %} <button type="submit" class="btn btn-success mt-3 px-5 fw-bold">Cart</button> {% endcomment %}
+          <div class="d-grid">
+          <form action="">
+          {% comment %} <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button> {% endcomment %}
+          <a href="{% url 'paymentdone' %}" class="btn btn-warning">Continue</a></div>
+          </form>
+          <div class="d-grid">
+          <a href="{% url 'cart' %}" class="btn btn-primary">Back to Cart</a></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

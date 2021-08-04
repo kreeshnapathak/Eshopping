@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+
+<div class="container my-5">
+ <div class="row">
+ {% comment %} list view {% endcomment %}
+  <div class="col-sm-3">
+   <div id="list-example" class="list-group">
+
+   <a class="list-group-item list-group-item-action" href="{% url 'mobile' %}">All</a>
+   {% comment %} {% for product in products %}
+   <a class="list-group-item list-group-item-action" href="{% url 'mobile' product.brand %}">{{product.brand}}</a>
+   {% endfor %} {% endcomment %}
+  <a class="list-group-item list-group-item-action" href="{% url 'bottomweardata' 'Gurkhas' %}">Gurkhas</a>
+  <a class="list-group-item list-group-item-action" href="{% url 'bottomweardata' 'Zara' %}">Zara</a>
+  <a class="list-group-item list-group-item-action" href="{% url 'bottomweardata' 'MadeInNepal' %}">MadeInNepal</a>
+  <a class="list-group-item list-group-item-action" href="{% url 'bottomweardata' 'above' %}">Above 2000</a>
+  <a class="list-group-item list-group-item-action" href="{% url 'bottomweardata' 'below' %}">Below 2000</a>
+</div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row">
+   {% for product in products %}
+   <div class="col-sm-4 text-center mb-4">
+   <a href="{% url 'product-detail' product.id %}"  class='btn'>
+   <div class= 'item'>
+   <img src="{{product.product_image.url}}" alt="" height='200' width='150' class=''>
+   <div class='fw-bold'>{{product.title}}</div>
+   <div class='fw-bold'>Rs. {{product.discounted_price}}
+   <small class='fw-light text-decoration-line-through'>{{product.selling_price}}</small></div>
+   
+   </div>
+   </a>
+   </div>
+   {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

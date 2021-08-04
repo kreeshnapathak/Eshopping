@@ -1,0 +1,84 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}">
+
+    <!--Owl Carousel CSS-->
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+
+    <!--FontAwesome CSS-->
+    <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+
+    <title>Eshopping | {% block title %} {% endblock title %} </title>
+  <style>
+  {% comment %} /* for footer at bottom begins */  {% endcomment %}
+  .body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin:0;
+   }
+  
+   .content {
+    padding: 0px; 
+    }
+   .footer {
+    margin-top: auto;
+    padding:0.05px; 
+    width:100%;
+   }
+
+{% comment %} /* for footer at bottom ends */ {% endcomment %}
+  
+    .errorlist{
+      list-style-type:none;
+      color:orange;
+      font-size:15px;
+      margin:0;
+      padding:0;
+      }  
+  </style>
+  </head>
+  <div id="page-container">
+   <div id="content-wrap">
+  <body class="pt-5">
+  <div class="content">
+  {% include 'app/navbar.html' %}
+    
+    {% block banner_slider %} {% endblock banner_slider %}
+    {% block livesale %} {% endblock livesale %}
+    {% block main-content %} {% endblock main-content %}
+
+    </div>
+    </div>
+    <!-- Start Footer -->
+    
+    <div class='footer'>
+    <footer class="container-fluid bg-dark text-center p-2 mt-5" id='footer'>
+        <small class="text-white">Copyright &copy; 2021 || Designed By KrishnaPathak for Learning Purpose || </small>
+        <img src="{% static 'app/images/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
+    </footer>
+     </div>
+     <!-- End Footer --> 
+
+
+     
+    <script src="{% static 'app/js/jquery.js' %}"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
+    <script src="{% static 'app/js/popper.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.js' %}"></script> 
+  </div>
+  </body>
+</html>

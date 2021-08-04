@@ -1,0 +1,120 @@
+<style>
+{% comment %} .navbar{
+  margin-bottom: 20px;
+} {% endcomment %}
+.navbar-brand {
+  position: absolute;
+  width: auto;
+  left: 15px;
+  text-align: center;
+  margin:0 auto;
+  
+}
+
+.navbar-right {
+  position: absolute;
+  width: auto;
+  right: 15px;
+  text-align: center;
+  margin:0 auto;
+  display: flex;
+justify-content: center;
+}
+
+</style>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container ">
+       <a class="navbar-brand" href="/">Eshopping</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+       data-bs-target="#navbarSupportedContent" 
+       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           <li class="nav-item">
+             <a class="nav-link active" aria-current="page" href="/">Home</a>
+           </li>
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+               Electronics
+             </a>
+             <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+               <li><a class="dropdown-item" href="{% url 'mobile' %}">Mobile</a></li>
+               <li><a class="dropdown-item" href="#">Laptop</a></li>
+               </ul>
+              </li>
+           <li class="nav-item dropdown">
+             <a class="nav-link dropdown-toggle text-white" href="#" id="fashionDropdown" role="button" data-bs-toggle="dropdown" 
+             aria-expanded="false">
+               Fashion
+             </a>
+             <ul class="dropdown-menu" aria-labelledby="fashionDropdown">
+               <li><a class="dropdown-item" href="{% url 'topwear' %}">Top Wear</a></li>
+               <li><a class="dropdown-item" href="{% url 'bottomwear' %}">Bottom Wear</a></li>
+             </ul>
+             </li>
+             </ul>
+    <div class='navbar-right'>       
+           <div>  
+          
+          <form action="/search" method='GET' class="navbar-nav mr-auto">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='query', id='query'>
+        <input type="submit" class="btn btn-outline-light" value="Search">
+        {% comment %} <button class="btn btn-outline-light" type="submit">Search</button> {% endcomment %}
+        </form>
+      
+          </div>
+         {% if request.user.is_authenticated %}
+         
+         <div>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle text-white text-left" href="#" id="profileDropdown" 
+           role="button" data-bs-toggle="dropdown" 
+              aria-expanded="false">
+                {{user.username}}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                <li ><a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
+
+          <li class="nav-item">
+             <a href="{% url 'cart' %}" class="nav-link text-white">
+             {% if totalitems %} <span class="badge bg-danger"> {{totalitems}} {% endif %}</span> MyCart </a>
+            </li>
+            
+            
+           
+           
+          {% else %}
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           {% comment %} <li class="nav-item">
+             <a href="{% url 'signup' %}" class="nav-link text-white">Registration</a>
+            </li>
+             {% endcomment %}
+              <li class="nav-item mx-2">
+              <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+              </li>
+           </ul>  
+        {% endif %}
+          
+             </div>              
+        
+         
+   </div>
+   
+          </div> 
+       </div>
+     </div>
+
+     
+    </nav>

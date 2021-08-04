@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="success" data-bs-dismiss="success">
+  <p class= 'text-center'><strong>Hi {{user.first_name}}!</strong> Your account has been created. Login to continue.</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %} 
+
+
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Login</h3>
+   <hr><br>
+   <h3 class= 'text-center' >
+    <strong>Sign in</strong><br>
+    to continue to Eshopping</h3>
+   <form action="" method="POST" class="shadow p-5">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for fm in form %}
+    <div class='form-group'>
+    {{fm.label_tag}}{{fm}}{{fm.errors|striptags}}<br>
+    {% for error in field.errors %}
+    <span class='errorlist'>{{error}}</span>
+    {% endfor %}
+    </div>
+    {% endfor %}
+    <a href="{% url 'reset' %}">Forgot Password?</a>
+    <div class="text-end text-center my-3">
+      <input type="submit" value=Submit class="btn btn-danger">
+     
+    </div>    <br>
+    <div class="text-center text-primary fw-bold"><small>New to Eshopping ? <a href="{% url 'signup' %}"
+       class="text-danger">Create an Account</a> </small></div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

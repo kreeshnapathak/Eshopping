@@ -1,0 +1,68 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Address{% endblock title %}
+{% block main-content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="success" data-bs-dismiss="success">
+  <p class= 'text-center'><strong>Hi {{user.first_name}}!</strong> Welcome to Eshopping.</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %} 
+
+<div class="container my-5">
+ <div class="row">
+  
+  <div class="col-sm-2 border-end">
+  
+   <ul class="list-unstyled">
+   <div id="list-example" class="list-group">
+   <div class="d-grid gap-2 col-6 mx-auto">
+   <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'profile' %}">Profile</a></li>
+  <li class="list-group-item list-group-item-action"><a class="btn {{active}}" href="{% url 'address' %}">Address</a></li>
+  <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'editprofile' %}">Edit Profile</a></li>
+  <li class="list-group-item list-group-item-action"><a class="btn" href="{% url 'changepassword' %}">Change Password</a></li
+  </div>
+</div>
+</ul>
+</div>
+  <div class="col-sm-8">
+  <h3>{{user.first_name}}'s Address</h3><hr><br>
+   <form action="" class ='offset-sm-1' method="post">
+    {% csrf_token %}
+    <div class="col-12">
+      <label for="inputName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="inputEmail">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress2" class="form-label">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="col-12">
+      <label for="inputCity" class="form-label">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">State</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+    <div class="col-12 mt-3 text-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

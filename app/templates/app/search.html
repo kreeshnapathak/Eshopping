@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+
+<div class="container my-5">
+ <div class="row">
+ {% comment %} list view {% endcomment %}
+  <div class="col-sm-3">
+   <div id="list-example" class="list-group">
+
+   
+   {% comment %} {% for product in products %}
+   <a class="list-group-item list-group-item-action" href="{% url 'mobile' product.brand %}">{{product.brand}}</a>
+   {% endfor %} {% endcomment %}
+   <h4>Filter by items</h4>
+  <a class="list-group-item list-group-item-action" href="{% url 'topwear'  %}">Top wear</a>
+  <a class="list-group-item list-group-item-action" href="{% url 'bottomwear' %}">Buttom Wear</a>
+  <a class="list-group-item list-group-item-action" href="{% url 'mobile' %}">Mobile</a>
+  
+</div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row">
+   <h3>Search Reasults for: <span class="text-warning">{{query}}<span></h3><br><br><br>
+{% if reasult|length < 1 %}
+
+<h4 class="text-danger"> No search reasults...... </h4>
+<h4>Your search <span class="text-warning">""{{query}}""</span> didnot match any documents.<br>
+<br>
+<span class='font-italic'>Suggestions:<br>
+Try different keywords.</span></h4>>
+
+{% endif %}
+
+   {% for product in reasult %}
+   <div class="col-sm-4 text-center mb-4">
+   <a href="{% url 'product-detail' product.id %}"  class='btn'>
+   <div class= 'item'>
+   <img src="{{product.product_image.url}}" alt="" height='200' width='150' class=''>
+   <div class='fw-bold'>{{product.title}}</div>
+   <div class='fw-bold'>Rs. {{product.discounted_price}}
+   <small class='fw-light text-decoration-line-through'>{{product.selling_price}}</small></div>
+   
+   </div>
+   </a>
+   </div>
+   {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
